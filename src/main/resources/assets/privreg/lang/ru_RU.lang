@@ -1,0 +1,158 @@
+#PrivateRegions
+itemGroup.um_privreg=Private Regions
+tile.um_privreg_pregion.name=Блок привата
+tile.um_privreg_barrier.name=Барьер привата
+tile.um_privreg_charger.name=Зарядник антиматерии
+tile.um_privreg_rentstand1.name=Стенд аренды
+#|
+item.um_privreg_biocard.name=Карта владельца привата
+item.um_privreg_antimatter.name=Контейнер антиматерии
+item.um_privreg_module.name=Модуль привата
+item.um_privreg_modification.name=Модификатор привата
+item.um_privreg_distancecontrol.name=Пульт дистанционного управления приватом
+#|
+item.um_privreg_antimatter.desc1=§2Заряд: §7%s/%s e.a.
+item.um_privreg_biocard.desc1=Shift+ПКМ, чтобы записать карту
+item.um_privreg_biocard.desc2=ПКМ по блоку привата, чтобы добавить владельца
+item.um_privreg_module.desc1=§2Расход: §7%s e.a. в сутки (за 1000 блоков площади)
+item.um_privreg_module.desc2=§2Текущий расход: §7%s e.a. в сутки
+item.um_privreg_module.chunkloader.desc1=§2Расход: §7%s e.a. в сутки (за 1 чанк)
+item.um_privreg_module.barrier.desc1=§2Расход: §7%s e.a. в сутки (за 1000 блоков поверхности)
+#| Region modifications
+item.um_privreg_modification.charge.name=Модификатор хранилища антиматерии
+item.um_privreg_modification.charge.desc1=Расширяет хранилище антиматерии
+item.um_privreg_modification.charge.desc2=на %s e.a.
+item.um_privreg_modification.tacts.name=Модификатор расширения территории
+item.um_privreg_modification.tacts.desc1=Дает возможность расширения территории
+item.um_privreg_modification.tacts.desc2=на %s расширений
+
+#GUI
+privreg.gui.back=назад
+privreg.gui.main.modules=Модули
+privreg.gui.main.on=Включить
+privreg.gui.main.off=Выключить
+privreg.gui.main.owners=Владельцы
+privreg.gui.main.show=Показать
+privreg.gui.main.dismantle=Демонтировать
+privreg.gui.main.msg.toosmall=Предельно малый размер!
+privreg.gui.main.msg.overtackts=Достигнуто максимальное кол-во расширений!
+privreg.gui.main.msg.intersects=Пересечена другая зона!
+privreg.gui.main.msg.outofparent=Выход за пределы родительского привата!
+privreg.gui.main.msg.outofworld=Выход за границу мира!
+privreg.gui.main.info.charge=§2Заряд: §r%s/%s
+privreg.gui.main.info.size=§2Размер: §r%s*%s = %s
+privreg.gui.main.info.cost=§2Расход: §r%s e.a./сутки
+privreg.gui.main.info.time=§2До отключения: §r%s
+privreg.gui.main.info.exte=§2расширено: §r%s/%s
+privreg.gui.main.info.dis1=§cНедостаточно антиматерии для работы
+privreg.gui.main.info.dis2=§cПриват исчезнет через неделю
+#|
+privreg.gui.distcont.line1=Нажмите %s
+privreg.gui.distcont.line2=Или для расширения привата
+privreg.gui.distcont.line3=используйте стрелки
+privreg.gui.distcont.line4=клавиатуры
+#|
+privreg.gui.addowner.add=добавить
+privreg.gui.addowner.remove=удалить
+privreg.gui.addowner.rights.title=Права владельца
+privreg.gui.addowner.rights.title.guest=Права гостя (любого игрока)
+privreg.gui.addowner.guestname=Гость
+privreg.gui.addowner.tenantname=Арендатор
+#|
+privreg.right.basic.creator=Создатель
+privreg.right.basic.all-rights=Все права
+privreg.right.basic.edit-modules=Изменять модули привата
+privreg.right.basic.edit-owners=Редактировать права владельцев
+privreg.right.basic.open-block=Открывать блок привата
+privreg.right.basic.place-subregions=Располагать регионы внутри данного
+privreg.right.basic.expand=Изменять размер привата
+privreg.right.basic.build=Изменять блоки на территории
+privreg.right.basic.interact=Взаимодействовать с блоками
+privreg.right.barrier=Барьер
+privreg.right.barrier.penetrate=Проходить сквозь барьер
+privreg.right.modbasic=Базовый модуль
+privreg.right.modbasic.basic=Считать владельцем (базовые права)
+privreg.right.modbasic.use_items=Использовать (ПКМ) предметы
+privreg.right.modbasic.use_blocks=Использовать (ПКМ) блоки
+privreg.right.modbasic.interact_mobs=Использовать (ПКМ) мобов
+privreg.right.modbasic.place_blocks=Устанавливать блоки
+privreg.right.modbasic.break_blocks=Разрушать блоки
+privreg.right.modbasic.pickup_items=Поднимать чужие предметы
+privreg.right.modbasic.attack_owners=Наносить урон владельцам
+privreg.right.modbasic.attack_guests=Наносить урон гостям
+privreg.right.modbasic.attack_animals=Наносить урон животным
+privreg.right.modbasic.attack_monsters=Наносить урон монстрам
+privreg.right.modbasic.attack_other_entities=Наносить урон другим Entity
+#|
+privreg.gui.charger.action=Преобразовать
+#|
+privreg.gui.module.settings=Настройки модуля
+privreg.gui.module.basic.items1=Запрещать только следующие предметы:
+privreg.gui.module.basic.items2=Запрещать все предметы, кроме:
+privreg.gui.module.basic.blocks1=Запрещать только следующие блоки:
+privreg.gui.module.basic.blocks2=Запрещать все блоки, кроме:
+privreg.gui.module.barrier.opaque=Непрозрачный барьер
+privreg.gui.module.discount.line1=Данное окно доступно только операторам
+privreg.gui.module.discount.line2=Скидка %%
+privreg.gui.module.discount.line3=Комментарий администратора:
+privreg.gui.module.discount.line4=*Просьба указывать комментарий при выдачи модуля
+privreg.gui.module.msg.enter=Сообщение при входе:
+privreg.gui.module.msg.leave=Сообщение при выходе:
+privreg.gui.module.msg.enterowner=Сообщение при входе владельца:
+privreg.gui.module.msg.leaveowner=Сообщение при выходе владельца:
+privreg.gui.module.mobdamage.damageowners=Отключать урон владельцам
+privreg.gui.module.mobdamage.damageguests=Отключать урон посторонним
+privreg.gui.module.mobspawn.animals=Отключить спавн животных
+privreg.gui.module.mobspawn.monsters=Отключить спавн монстров
+privreg.gui.module.admin.disblockdrops=Отключить выпадение блоков
+privreg.gui.module.admin.dismobdrops=Отключить выпадение лута
+privreg.gui.module.admin.displayerdrops=Отключить дроп предметов игроком
+privreg.gui.module.admin.cmd1=Черный список команд:
+privreg.gui.module.admin.cmd2=Белый список команд:
+
+privreg.msg.createfail=Не удалось создать регион: Пересечена другая зона!
+privreg.msg.entering=Вы вошли в приватный регион
+privreg.msg.leave=Вы покинули приватный регион
+privreg.msg.place=Установка блоков запрещена на данной территории
+privreg.msg.break=Разрушение блоков запрещено на данной территории
+privreg.msg.interact=Использование блоков/предемтов запрещено на данной территории
+privreg.msg.interact.items=Использование предметов запрещено на данной территории
+privreg.msg.interact.blocks=Использование блоков запрещено на данной территории
+privreg.msg.pvp=§cPvP запрещено на данной территории
+privreg.msg.animals=§cУбийство животных запрещено на данной территории
+privreg.msg.monsters=§cУбийство монстров запрещено на данной территории
+privreg.msg.other_entities=§cНанесение урона другим Entity запрещено на данной территории
+privreg.msg.command=Использование данной команды запрещено на данной территории
+
+
+item.privreg.region.name=Блок привата
+item.privreg.amcontainer.name=Контейнер антиматерии
+item.privreg.remotecontrol.name=Дистанционный пульт управления приватом
+
+# Region modules
+item.privreg.module.basic.name=Модуль привата: Базовый
+item.privreg.module.basic.desc=Блокирует установку/разрушение/взаимодейтствие\nс блоками, использование предметов, нанесение урона\n(в т.ч. PvP)
+item.privreg.module.mobdamage.name=Модуль привата: Урон от мобов
+item.privreg.module.mobdamage.desc=Блокирует урон от мобов
+item.privreg.module.explosion.name=Модуль привата: Взрывы
+item.privreg.module.explosion.desc=Блокирует любые взрывы, в т.ч вызванные владельцами\n привата (взрывы, вызванные гостями\n блокирются базовым модулем)
+item.privreg.module.liquidflow.name=Модуль привата: Остановка жидкостей
+item.privreg.module.liquidflow.desc=Блокирует разлитие жидкостей внутри привата\n (разлитие жидкостей из-за пределов\n привата блокирует базовый модуль)
+item.privreg.module.snowfall.name=Модуль привата: Остановка снега
+item.privreg.module.snowfall.desc=Блокирует образование снега и лавы в снежном биоме
+item.privreg.module.greeting.name=Модуль привата: Приветствие
+item.privreg.module.greeting.desc=Задает сообщение, отображаемое при входе в регион
+item.privreg.module.barrier.name=Модуль привата: Барьер
+item.privreg.module.barrier.desc=Создает невидимый (или видимый) барьер\n(Расход за площадь внешней поверхности региона)
+item.privreg.module.chunkloader.name=Модуль привата: Чанклоадер
+item.privreg.module.chunkloader.desc=Активирует чанки в пределах региона
+item.privreg.module.free.name=Модуль привата: Чит
+item.privreg.module.free.desc=Приват больше не потребляет антиматрию
+item.privreg.module.discount.name=Модуль привата: Скидка
+item.privreg.module.discount.desc=Скидка на приват
+item.privreg.module.mobspawn.name=Модуль привата: Анти-спавн мобов
+item.privreg.module.mobspawn.desc=Отключает спавн мобов
+item.privreg.module.admin.name=Модуль привата: Админский
+item.privreg.module.admin.desc=Рандомные флаги
+item.privreg.module.rent.name=Модуль привата: Аренда/продажа
+item.privreg.module.rent.desc=Позволяет сдавать в аренду и продавать регион

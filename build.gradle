@@ -1,0 +1,232 @@
+import org.gradle.api.internal.artifacts.publish.ArchivePublishArtifact
+import org.gradle.api.internal.java.JavaLibrary
+import org.ultramine.gradle.task.ReobfTask
+import org.ultramine.gradle.task.SideSplitTask
+import org.ultramine.gradle.task.SpeicialClassTransformTask
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
+
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+
+compileJava.options.encoding = 'UTF-8'
+
+group = project_group
+version = (concat_mc_version_to=='version' ? (minecraft_version+'-') : '') + computeVersion()
+
+repositories {
+	maven {
+		name 'forge'
+		url 'http://files.minecraftforge.net/maven'
+	}
+	mavenCentral()
+	maven {
+		name 'sonatypeSnapshot'
+		url 'https://oss.sonatype.org/content/repositories/snapshots/'
+	}
+	maven {
+		name 'minecraft'
+		url 'https://libraries.minecraft.net/'
+	}
+	maven {
+		name 'ultramine'
+		url 'http://maven.ultramine.ru/'
+	}
+	maven { url 'http://repo.mikeprimm.com/' }
+	maven { url = "http://maven.cil.li/" }
+}
+
+configurations {
+	compileCommon
+	compileClient
+	compileServer
+	compile.extendsFrom compileCommon, compileClient, compileServer
+	runtimeCommon
+	runtimeClient.extendsFrom runtimeCommon, compileCommon, compileClient
+	runtimeServer.extendsFrom runtimeCommon, compileCommon, compileServer
+	runtimeAll.extendsFrom runtimeCommon, compileCommon, compileClient, compileServer
+	runtime.setExtendsFrom([runtimeAll])
+	//runtimeClient & runtimeServer is not linking to IDE and must not be used for adding dependencies
+}
+
+dependencies {
+	compileCommon 'org.ultramine.core:ultramine_core-1.7.10:0.1.0-beta.11'
+
+    compileCommon 'org.dynmap:DynmapCoreAPI:2.0'
+	compileCommon 'li.cil.oc:OpenComputers:MC1.7.10-1.5.+:api'
+
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.3'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'junit:junit:4.5'
+
+    testRuntime "cglib:cglib-nodep:2.2.2"
+    testRuntime "org.objenesis:objenesis:1.2"
+}
+
+task injectVersion(type: SpeicialClassTransformTask) {
+	dependsOn tasks.compileJava
+	inputDir = tasks.compileJava.destinationDir
+	replace {
+		replaceIn 'org.ultramine.mods.privreg.PrivateRegions'
+		replace '@version@', version
+	}
+}
+
+task reobf(type: ReobfTask) {
+	dependsOn tasks.compileJava, tasks.injectVersion
+	classpath = sourceSets.main.compileClasspath;
+	srg = 'conf/mcp2notch.srg'
+	inputDir = tasks.compileJava.destinationDir
+	overrideInputDir = tasks.injectVersion.outputDir
+}
+
+task sidesplit(type: SideSplitTask) {
+	dependsOn tasks.reobf
+	inputDir = tasks.reobf.outputDir
+}
+
+task processServerResources(type: ProcessResources) {
+	from sourceSets.main.resources.srcDirs
+	into new File(buildDir, 'resources_server')
+	exclude 'assets/minecraft/font'
+	exclude 'assets/minecraft/shaders'
+	exclude 'assets/minecraft/texts'
+	exclude 'assets/minecraft/textures'
+	exclude 'assets/fml/textures'
+}
+
+task processClientResources(type: ProcessResources) {
+	from sourceSets.main.resources.srcDirs
+	into new File(buildDir, 'resources_client')
+	exclude 'org/ultramine/defaults'
+}
+
+task jar_server(type: Jar) {
+	dependsOn(tasks.sidesplit, tasks.processServerResources)
+	from fileTree(tasks.sidesplit.getServerClasses()), tasks.processServerResources
+	classifier = 'server'
+}
+
+task jar_client(type: Jar) {
+	dependsOn(tasks.sidesplit, tasks.processClientResources)
+	from fileTree(tasks.sidesplit.getClientClasses()), tasks.processClientResources
+	classifier = 'client'
+}
+
+task jar_universal(type: Jar) {
+	dependsOn(tasks.reobf, tasks.processResources)
+	from tasks.reobf.getOutputDir(), tasks.processResources
+	classifier = 'universal'
+}
+
+jar {
+	classifier = 'dev'
+}
+
+task jar_source(type: Jar) {
+	from sourceSets.main.allSource
+	classifier = 'sources'
+}
+
+artifacts {
+	if(produce_universal_jar == 'true')	archives jar_universal
+	if(produce_server_jar == 'true')	archives jar_server
+	if(produce_client_jar == 'true')	archives jar_client
+}
+
+publishing {
+	publications {
+		if(publish_jars.contains('dev'))
+			mavenDevJar(MavenPublication) {
+				from new JavaLibrary(new ArchivePublishArtifact(tasks.jar), configurations.runtimeCommon.getAllDependencies())
+				artifacts.matching({it.classifier == "dev"}).all({it.classifier = null})
+				artifact tasks.jar_source
+			}
+		if(publish_jars.contains('universal'))
+			mavenUnivarsalJar(MavenPublication) {
+				from new JavaLibrary(new ArchivePublishArtifact(tasks.jar_universal), configurations.runtimeAll.getAllDependencies())
+				artifacts.matching({it.classifier == "universal"}).all({it.classifier = null})
+				artifactId = project.name + '-universal'
+			}
+		if(publish_jars.contains('server'))
+			mavenServerJar(MavenPublication) {
+				from new JavaLibrary(new ArchivePublishArtifact(tasks.jar_server), configurations.runtimeServer.getAllDependencies())
+				artifacts.matching({it.classifier == "server"}).all({it.classifier = null})
+				artifactId = project.name + '-server'
+			}
+		if(publish_jars.contains('client'))
+			mavenClientJar(MavenPublication) {
+				from new JavaLibrary(new ArchivePublishArtifact(tasks.jar_client), configurations.runtimeClient.getAllDependencies())
+				artifacts.matching({it.classifier == "client"}).all({it.classifier = null})
+				artifactId = project.name + '-client'
+			}
+	}
+	repositories {
+		if(project.hasProperty('publish_url') && !publish_url.isEmpty())
+			maven {
+				url publish_url
+			}
+	}
+}
+
+task dumpLibs(type: Copy) {
+	into "$buildDir/libs/libraries"
+	from configurations.runtime
+}
+
+String getGitDesc() {
+	def stdout = new ByteArrayOutputStream()
+	exec {
+		commandLine 'git', 'describe', '--tags', '--long'
+		standardOutput = stdout
+		errorOutput = stdout
+	}.rethrowFailure().assertNormalExitValue()
+	return stdout.toString().trim()
+}
+
+String computeVersion() {
+	if(project.hasProperty('override_version'))
+		return override_version
+
+	String mmversion; // major.minor
+	String commit;
+	try {
+		String[] parts = getGitDesc().split('-')
+		if(parts.length != 3) throw new GradleException('no git tags found')
+		if(!parts[0].startsWith('v')) throw new GradleException('last git tag is not a version')
+		mmversion = parts[0].substring(1) //removing 'v'
+		commit = parts[2].substring(1) //removing 'g'
+	} catch (Exception e) {
+		if(release_type != 'indev') throw e
+		return 'indev'
+	}
+
+	if(release_type != 'stable') {
+		int ind = mmversion.lastIndexOf('.')
+		mmversion = mmversion.substring(0, ind+1) + ((mmversion.substring(ind+1) as int) + 1) + '.0-' + release_type
+	}
+
+	int revision = 0;
+	if(project.hasProperty('override_revision')) {
+		revision = override_revision as int
+	} else if(release_type != 'indev' || project.hasProperty('increment_revision')) {
+		File verfile = file("$buildDir/versions/$mmversion")
+		String filetext;
+		if(verfile.exists() && !(filetext = verfile.getText().trim()).isEmpty()) {
+			String[] fileparts = filetext.split(':')
+			if(fileparts.length != 2) throw new GradleException('Version file is corrupted: ' + verfile.getAbsolutePath())
+			revision = fileparts[1] as int;
+			if(!commit.equals(fileparts[0]) || project.hasProperty('increment_revision')) {
+				revision++;
+				verfile.write(commit+':'+revision)
+			}
+		} else {
+			verfile.getParentFile().mkdirs()
+			verfile.write(commit+':0')
+		}
+	}
+
+	return (revision > 0 || release_type == 'stable') ? (mmversion+'.'+revision) : mmversion;
+}

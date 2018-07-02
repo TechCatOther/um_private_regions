@@ -1,0 +1,157 @@
+#PrivateRegions
+itemGroup.um_privreg=Private Regions
+tile.um_privreg_pregion.name=Block region
+tile.um_privreg_barrier.name=Barrier of region
+tile.um_privreg_charger.name=Antimatter charger
+tile.um_privreg_rentstand1.name=Rental stand
+#|
+item.um_privreg_biocard.name=Region owner card
+item.um_privreg_antimatter.name=Antimatter container
+item.um_privreg_module.name=Region module
+item.um_privreg_modification.name=Region modification
+item.um_privreg_distancecontrol.name=Region remote controller
+#|
+item.um_privreg_antimatter.desc1=§Charge: §7%s/%s e.a.
+item.um_privreg_biocard.desc1=Shift+Right-click to white a card
+item.um_privreg_biocard.desc2=Right-click on region block to add the owner
+item.um_privreg_module.desc1=§2Cost: §7%s e.a. per day (for 1000 blocks of area)
+item.um_privreg_module.desc2=§2Current cost: §7%s e.a. per day
+item.um_privreg_module.chunkloader.desc1=§2Cost: §7%s e.a. per day (for 1 chunk)
+item.um_privreg_module.barrier.desc1=§2Cost: §7%s e.a. per day (for 1000 blocks of surface)
+#| Region modifications
+item.um_privreg_modification.charge.name=Region Modification Charge
+item.um_privreg_modification.charge.desc1=Extends the storage of antimatter
+item.um_privreg_modification.charge.desc1=by %s e.a.
+item.um_privreg_modification.tacts.name=Region Modification Territory
+item.um_privreg_modification.tacts.desc1=Gives ability to expand territory
+item.um_privreg_modification.tacts.desc2=by %s extensions
+
+#GUI
+privreg.gui.back=back
+privreg.gui.main.modules=Modules
+privreg.gui.main.on=Enable
+privreg.gui.main.off=Disable
+privreg.gui.main.owners=Owners
+privreg.gui.main.show=Show
+privreg.gui.main.dismantle=Dismantle
+privreg.gui.main.msg.toosmall=Too small size!
+privreg.gui.main.msg.overtackts=Has reached the maximum amount of extensions!
+privreg.gui.main.msg.intersects=Itersects with other region!
+privreg.gui.main.msg.outofparent=Out of parent region!
+privreg.gui.main.msg.outofworld=Out of world!
+privreg.gui.main.info.charge=§2Charge: §r%s/%s
+privreg.gui.main.info.size=§2Size: §r%s*%s = %s
+privreg.gui.main.info.cost=§2Cost: §r%s e.a./сутки
+privreg.gui.main.info.time=§2Before shutdown §r%s
+privreg.gui.main.info.exte=§2Expanded: §r%s/%s
+privreg.gui.main.info.dis1=§cNot enough antimatter to work
+privreg.gui.main.info.dis2=§cRegion will disappear in a week
+#|
+privreg.gui.distcont.line1=Нажмите %s
+privreg.gui.distcont.line2=Или для расширения привата
+privreg.gui.distcont.line3=используйте стрелки
+privreg.gui.distcont.line4=клавиатуры
+#|
+privreg.gui.addowner.add=add
+privreg.gui.addowner.remove=remove
+privreg.gui.addowner.rights.title=Rights of user
+privreg.gui.addowner.rights.title.guest=Rights of guest (any player)
+privreg.gui.addowner.guestname=Guest
+privreg.gui.addowner.tenantname=Tenantname
+#|
+privreg.right.basic.creator=Creator
+privreg.right.basic.all-rights=All rights
+privreg.right.basic.edit-modules=Edit modules
+privreg.right.basic.edit-owners=Edit user rights
+privreg.right.basic.open-block=Open region block
+privreg.right.basic.place-subregions=Create regions into this
+privreg.right.basic.expand=Change size of region
+privreg.right.basic.build=Change blocks in region
+privreg.right.basic.interact=Interact with blocks in region
+privreg.right.barrier=Barrier
+privreg.right.barrier.penetrate=Penetrate through barrier
+privreg.right.modbasic=Basic module
+privreg.right.modbasic.basic=Read as owner (basic rights)
+privreg.right.modbasic.use_items=Use (RMB) items
+privreg.right.modbasic.use_blocks=Interact (RMB) with blocks
+privreg.right.modbasic.interact_mobs=Interact (RMB) with mobs
+privreg.right.modbasic.place_blocks=Place blocks
+privreg.right.modbasic.break_blocks=Break blocks
+privreg.right.modbasic.pickup_items=Pickup foreign items
+privreg.right.modbasic.attack_owners=Damage owners
+privreg.right.modbasic.attack_guests=Damage guests
+privreg.right.modbasic.attack_animals=Damage animals
+privreg.right.modbasic.attack_monsters=Damage monsters
+privreg.right.modbasic.attack_other_entities=Damage other entities
+#|
+privreg.gui.charger.action=Convert
+#|
+privreg.gui.module.settings=Module settings
+privreg.gui.module.basic.items1=Prohibits only the following items:
+privreg.gui.module.basic.items2=Deny all items except:
+privreg.gui.module.basic.blocks1=Prohibits only the following blocks:
+privreg.gui.module.basic.blocks2=Deny all blocks except:
+privreg.gui.module.barrier.opaque=Opaque barrier
+privreg.gui.module.discount.line1=This window is allowed for operators only
+privreg.gui.module.discount.line2=Discount %%
+privreg.gui.module.discount.line3=Admin comment:
+privreg.gui.module.discount.line4=*Please provide a comment when issuing module
+privreg.gui.module.msg.enter=Message when entering:
+privreg.gui.module.msg.leave=Message when out:
+privreg.gui.module.msg.enterowner=Message when owner entering:
+privreg.gui.module.msg.leaveowner=Message when owner out
+privreg.gui.module.mobdamage.damageowners=Disable damage for owners
+privreg.gui.module.mobdamage.damageguests=Disable damage for guests
+privreg.gui.module.mobspawn.animals=Disable animals spawn
+privreg.gui.module.mobspawn.monsters=Disable monsters spawn
+privreg.gui.module.admin.disblockdrops=Disable block drops
+privreg.gui.module.admin.dismobdrops=Disable mob loot
+privreg.gui.module.admin.displayerdrops=Disable player items drop
+privreg.gui.module.admin.cmd1=command blacklist:
+privreg.gui.module.admin.cmd2=whitelist:
+
+privreg.msg.createfail=Failed to create region: Itersects with other region!
+privreg.msg.entering=Entering the private region
+privreg.msg.leave=Leaving the private region
+privreg.msg.place=Placing blocks is prohibited in the area
+privreg.msg.break=Breaking blocks is prohibited in the area
+privreg.msg.interact=Using of blocks/items is prohibited in the area
+privreg.msg.interact.items=Using of items is prohibited in the area
+privreg.msg.interact.blocks=Using of blocks is prohibited in the area
+privreg.msg.pvp=§cPvP is prohibited in the area
+privreg.msg.animals=§cDamage animals is prohibited in the area
+privreg.msg.monsters=§cDamage monsters is prohibited in the area
+privreg.msg.other_entities=§cDamage other entities is prohibited in the area
+privreg.msg.command=§cUsing of this command is prohibited in the area
+
+item.privreg.region.name=Region block
+item.privreg.amcontainer.name=Antimatter container
+item.privreg.remotecontrol.name=Remote region control
+
+# Region modules
+item.privreg.module.basic.name=Region module Basic
+item.privreg.module.basic.desc=prohibit placing/breaking/interacting\nwith blocks, using items, cause damage\n(including PvP)
+item.privreg.module.mobdamage.name=Region module Mob damage
+item.privreg.module.mobdamage.desc=Disables mob damage
+item.privreg.module.explosion.name=Region module Explosion
+item.privreg.module.explosion.desc=Disables any explosion, including initiated by\n region owner (explosion initiated by guest\n disables by basic module)
+item.privreg.module.liquidflow.name=Region module Liquid fix
+item.privreg.module.liquidflow.desc=Fixes any liquids
+item.privreg.module.snowfall.name=Region module Snow fix
+item.privreg.module.snowfall.desc=Disables snow and ice form in show biomes
+item.privreg.module.greeting.name=Region module Greeting
+item.privreg.module.greeting.desc=Sets message, displays while entering the region
+item.privreg.module.barrier.name=Region module: Barrier
+item.privreg.module.barrier.desc=Creates invisible (or visible) barrier\n(Cost for square of outer surface)
+item.privreg.module.chunkloader.name=Region module: ChunkLoader
+item.privreg.module.chunkloader.desc=Activates chunks inside the region
+item.privreg.module.free.name=Region module: Free
+item.privreg.module.free.desc=Region is no longer consumes antimatter
+item.privreg.module.discount.name=Region module: Discount
+item.privreg.module.discount.desc=Discount for region
+item.privreg.module.mobspawn.name=Region module Mob Spawn
+item.privreg.module.mobspawn.desc=Prevents mob spawn
+item.privreg.module.admin.name=Region module Admin
+item.privreg.module.admin.desc=Randim flags
+item.privreg.module.rent.name=Region module: Rent/Sell
+item.privreg.module.rent.desc=Allows to rent or sell the region

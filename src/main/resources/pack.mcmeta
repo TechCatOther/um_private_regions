@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "pack_format": 1,
+    "description": "4321"
+  },
+  "language": {
+    "ru_RT": {
+      "name": "1234",
+      "region": "KB",
+      "bidirectional": false
+    }
+  }
+}

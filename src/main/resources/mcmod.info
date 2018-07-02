@@ -1,0 +1,21 @@
+[
+{
+  "modid": "PrivateRegions",
+  "name": "UltraMine PrivateRegions",
+  "description": "UltraMine Private Regions",
+  "version": "1.0.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authors": [
+    "vlad20012"
+  ],
+  "credits": "By vlad20012",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
